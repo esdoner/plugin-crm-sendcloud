@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<plugin>
+    <id>com.fr.plugin.crm.sendcloud</id>
+    <name><![CDATA[CRM-SC通信]]></name>
+    <active>yes</active>
+    <version>1.0</version>
+    <env-version>10.0</env-version>
+    <jartime>2019-01-01</jartime>
+    <vendor>crm.yuwh</vendor>
+    <description><![CDATA[应用sendcloud提供的SDK对接平台，采用市场组付费账号]]></description>
+    <change-notes><![CDATA[
+      [2019-03-26]初始化插件。<br/>
+      [2019-04-03]增加测试功能，做模板时可以仅测试功能而不发送消息。<br/>
+      [2019-06-10]新增系统配置功能<br/>
+    ]]></change-notes>
+    <extra-core>
+        <FunctionDefineProvider class="com.fr.plugin.sendcloud.send.SCSendFactory" description="sendcloud收费平台信息发送；短信发送模式：SCSend(模式, 是否国外短信（1则为国外）, SC平台模板ID, 手机号, 参数json数据)；短信例子：SCSend(&quot;sms&quot;, &quot;0&quot;, &quot;10001&quot;, &quot;15112345678&quot;, &quot;{'name':'123'}&quot;); 邮件发送模式：SCSend(模式, 邮件地址, SC平台模板ID, 邮件主题（可带参数%key%）, 参数json数据);短信例子：SCSend(&quot;email&quot;, &quot;a@fanruan.com&quot;, &quot;fanruan_email_test&quot;, &quot;测试邮件&quot;, &quot;{'key':'abc'}&quot;) " name="SCSend"/>
+        <LocaleFinder class="com.fr.plugin.sendcloud.SendCloudLocaleFinder"/>
+    </extra-core>
+    <lifecycle-monitor class="com.fr.plugin.sendcloud.config.InitializeMonitor"/>
+    <function-recorder class="com.fr.plugin.sendcloud.send.SCSendFactory"/>
+</plugin>
